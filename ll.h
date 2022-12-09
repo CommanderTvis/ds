@@ -2,6 +2,8 @@
 #include <memory.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#ifndef LL_H
+#define LL_H
 
 typedef struct ll *ll_t;
 
@@ -24,6 +26,13 @@ void ll_add_last(ll_t *head, int element) {
         it = it->next;
     }
     it->next = new;
+}
+
+void ll_add_first(ll_t *head, int element) {
+    ll_t new = malloc(sizeof(struct ll));
+    new->item = element;
+    new->next = *head;
+    *head = new;
 }
 
 __attribute__((unused)) void ll_make_cycled(ll_t head) {
@@ -197,4 +206,4 @@ void ll_delete_duplicates(ll_t *head) {
     } while (*head);
     *head = copy;
 }
-
+#endif

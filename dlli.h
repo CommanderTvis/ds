@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+#ifndef DLLI_H
 
 typedef struct dlli *dlli_t;
 
@@ -140,3 +141,4 @@ void dlli_free(dlli_t *head) {
     } while (*head);
     *head = NULL;
 }
+#endif

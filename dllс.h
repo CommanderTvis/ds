@@ -1,6 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifndef DLLC_H
+#define DLLC_H
 
 typedef struct dllc *dllc_t;
 
@@ -146,3 +148,4 @@ void dllc_free(dllc_t *head) {
     } while (*head);
     *head = NULL;
 }
+#endif

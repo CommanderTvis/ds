@@ -1,6 +1,8 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifndef DLLP_H
+#define DLLP_H
 
 typedef struct dllp *dllp_t;
 
@@ -117,3 +119,4 @@ void dllp_free(dllp_t *head) {
     } while (*head);
     *head = NULL;
 }
+#endif

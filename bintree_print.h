@@ -1,15 +1,7 @@
 #include "bintree.h"
 #include "dllp.h"
-
-#define max(x, y) (((x) > (y)) ? (x) : (y))
-
-size_t bnode_height(bnode_t root) {
-    if (!root) {
-        return 0;
-    }
-    return 1 + max(bnode_height(root->left), bnode_height(root->right));
-}
-
+#ifndef BINTREE_PRINT_H
+#define BINTREE_PRINT_H
 
 void print_offset(size_t n, bnode_t removed) {
     for (; n > 0; n--) {
@@ -53,3 +45,4 @@ void bnode_print_vertical(bnode_t root) {
         }
     }
 }
+#endif
