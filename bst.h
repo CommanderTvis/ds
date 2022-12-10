@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include "bintree.h"
 
 #ifndef BST_H
@@ -22,13 +23,6 @@ void bst_convert_to_impl(bnode_t root, bnode_t *bst) {
     bst_convert_to_impl(root->right, bst);
 }
 
-bool bnode_is_balanced(bnode_t root) {
-    if (!root) return true;
-    size_t lh = bnode_height(root->left);
-    size_t rh = bnode_height(root->right);
-    return distance(lh, rh) <= 1 && bnode_is_balanced(root->left) && bnode_is_balanced(root->right);
-}
-
 bnode_t bst_find(bnode_t root, int data) {
     if (!root || root->data == data)
         return root;
@@ -44,9 +38,4 @@ int bst_max_impl(bnode_t root, int max) {
     }
     return max(root->data, max);
 }
-
-bnode_t to_avl(int *array, size_t len) {
-
-}
-
 #endif

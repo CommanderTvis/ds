@@ -4,7 +4,7 @@
 #include "bintree_print.h"
 #include "bst.h"
 
-int main(int argc, char **argv) {
+int main() {
     bnode_t r = bnode_new_leaf(1);
     r->left = bnode_new_leaf(2);
     r->left->left = bnode_new_leaf(3);
@@ -12,5 +12,7 @@ int main(int argc, char **argv) {
     r->right = bnode_new_leaf(4);
     puts("tree:");
     bnode_print_vertical(r);
+    printf("balanced:");
+    if ()
     return 0;
 }

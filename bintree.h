@@ -65,4 +65,11 @@ size_t bnode_n_leaves(bnode_t root) {
     return bnode_n_leaves(root->left) + bnode_n_leaves(root->right);
 }
 
+bool bnode_is_balanced(bnode_t root) {
+    if (!root) return true;
+    size_t lh = bnode_height(root->left);
+    size_t rh = bnode_height(root->right);
+    return distance(lh, rh) <= 1 && bnode_is_balanced(root->left) && bnode_is_balanced(root->right);
+}
+
 #endif
