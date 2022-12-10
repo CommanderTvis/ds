@@ -1,18 +1,8 @@
 #include "bintree.h"
 #include "dllp.h"
-#ifndef BINTREE_PRINT_H
-#define BINTREE_PRINT_H
 
-void print_offset(size_t n, bnode_t removed) {
-    for (; n > 0; n--) {
-        putchar(' ');
-    }
-    if (!removed) {
-        putchar(' ');
-    } else {
-        printf("%i", removed->data);
-    }
-}
+#ifndef BINTREE_PRINT_H
+#define BINTREE_PRINT_H˚
 
 
 void bnode_print_vertical(bnode_t root) {
@@ -24,11 +14,20 @@ void bnode_print_vertical(bnode_t root) {
     size_t n_elements = (1uL << (height + 1)) - 1;
     while (counter <= height) {
         bnode_t removed = dllp_delete(&treeLevel);
-        if (dllp_is_empty(temp)) {
-            print_offset(n_elements / (1uL << (counter + 1)), removed);
-        } else {
-            print_offset(n_elements / (1uL << counter), removed);
-        }
+        size_t n;
+        if (dllp_is_empty(temp))
+            n = n_elements / (1uL << (counter + 1));
+        else
+            n = n_elements / (1uL << counter);
+
+        for (; n > 0; n--)
+            putchar(' ');
+
+        if (!removed)
+            putchar(' ');
+        else
+            printf("%i", removed->data);
+
         if (removed) {
             dllp_add_last(&temp, removed->left);
             dllp_add_last(&temp, removed->right);
@@ -45,4 +44,5 @@ void bnode_print_vertical(bnode_t root) {
         }
     }
 }
+
 #endif
