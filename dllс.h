@@ -31,7 +31,7 @@ void dllc_add_last(dllc_t *head, char element) {
     it->next = new;
 }
 
-bool dllc_add_after(dllc_t head, char element) {
+bool dllc_add_after(dllc_t head, const char element) {
     if (!head) return false;
     dllc_t new = malloc(sizeof(struct dllc));
     new->item = element;
@@ -43,9 +43,9 @@ bool dllc_add_after(dllc_t head, char element) {
     return true;
 }
 
-bool dllc_insert(dllc_t *head, size_t index, char element) {
+bool dllc_insert(dllc_t *head, const size_t index, const char element) {
     if (!head) return false;
-    dllc_t new = malloc(sizeof(struct dllc));
+    const dllc_t new = malloc(sizeof(struct dllc));
     new->item = element;
     new->previous = NULL;
     new->next = NULL;
@@ -118,7 +118,7 @@ void dllc_remove(dllc_t *node) {
     *node = NULL;
 }
 
-size_t dllc_count(dllc_t head) {
+size_t dllc_count(const dllc_t head) {
     dllc_t temp = head;
     size_t result = 0;
     if (head) {
@@ -130,7 +130,7 @@ size_t dllc_count(dllc_t head) {
     return result;
 }
 
-void dllc_remove_key(dllc_t head, char key) {
+void dllc_remove_key(dllc_t head, const char key) {
     while (head) {
         dllc_t next = head->next;
         if (key == head->item) {

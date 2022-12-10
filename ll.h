@@ -7,6 +7,8 @@
 
 typedef struct ll *ll_t;
 
+#define ll_empty NULL
+
 struct ll {
     int item;
     ll_t next;
@@ -35,7 +37,7 @@ void ll_add_first(ll_t *head, int element) {
     *head = new;
 }
 
-__attribute__((unused)) void ll_make_cycled(ll_t head) {
+void ll_make_cycled(ll_t head) {
     ll_t cur = head;
     while (cur->next) {
         cur = cur->next;
@@ -99,14 +101,14 @@ void ll_set(ll_t head, size_t index, int value) {
     }
 }
 
-__attribute__((unused)) void ll_swap(ll_t a, ll_t b) {
+void ll_swap(ll_t a, ll_t b) {
     int temp = a->item;
     a->item = b->item;
     b->item = temp;
 }
 
 
-__attribute__((unused)) void ll_count_sort(ll_t head, int max_number) {
+void ll_count_sort(ll_t head, int max_number) {
     size_t N = ll_count(head);
     int *count = calloc(max_number, sizeof(int));
 
@@ -119,7 +121,7 @@ __attribute__((unused)) void ll_count_sort(ll_t head, int max_number) {
     free(count);
 }
 
-__attribute__((unused)) int ll_most_frequent(ll_t head) {
+int ll_most_frequent(ll_t head) {
     size_t maxcount = 0;
     int element_having_max_freq = head->item;
     ll_t external = head;
@@ -149,12 +151,12 @@ void ll_delete(ll_t *head, size_t position) {
         if (i == 0 && position == 1) {
             *head = (*head)->next;
             free(temp);
-            temp = NULL;
+            temp = ll_empty;
         } else {
             if (i == position - 1 && temp) {
                 prev->next = temp->next;
                 free(temp);
-                temp = NULL;
+                temp = ll_empty;
             } else {
                 prev = temp;
                 if (!prev)

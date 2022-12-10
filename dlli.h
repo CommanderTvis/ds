@@ -4,6 +4,8 @@
 
 typedef struct dlli *dlli_t;
 
+#define dlli_empty NULL
+
 struct dlli {
     int item;
     dlli_t previous;
@@ -129,7 +131,7 @@ void dlli_print(dlli_t head) {
     } while (head);
 }
 
-bool dlli_is_empty(dlli_t head) {
+static inline bool dlli_is_empty(dlli_t head) {
     return !head;
 }
 

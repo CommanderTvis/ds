@@ -2,13 +2,13 @@
 #include "dllp.h"
 
 #ifndef BINTREE_PRINT_H
-#define BINTREE_PRINT_H˚
+#define BINTREE_PRINT_H
 
 
 void bnode_print_vertical(bnode_t root) {
-    dllp_t treeLevel = NULL;
+    dllp_t treeLevel = dllp_empty;
     dllp_add_last(&treeLevel, root);
-    dllp_t temp = NULL;
+    dllp_t temp = dllp_empty;
     size_t counter = 0;
     size_t height = bnode_height(root) - 1;
     size_t n_elements = (1uL << (height + 1)) - 1;
@@ -39,7 +39,7 @@ void bnode_print_vertical(bnode_t root) {
         if (dllp_is_empty(treeLevel)) {
             puts("\n");
             treeLevel = temp;
-            temp = NULL;
+            temp = dllp_empty;
             counter++;
         }
     }

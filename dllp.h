@@ -6,6 +6,8 @@
 
 typedef struct dllp *dllp_t;
 
+#define dllp_empty NULL
+
 struct dllp {
     void *item;
     dllp_t previous;
@@ -31,7 +33,7 @@ void dllp_add_last(dllp_t *head, void *element) {
     it->next = new;
 }
 
-bool dllp_add_after(dllp_t head, void *element) {
+bool dllp_add_after(const dllp_t head, void *element) {
     if (!head) return false;
     dllp_t new = malloc(sizeof(struct dllp));
     new->item = element;
@@ -43,7 +45,7 @@ bool dllp_add_after(dllp_t head, void *element) {
     return true;
 }
 
-bool dllp_insert(dllp_t *head, size_t index, void *element) {
+bool dllp_insert(dllp_t *head, const size_t index, void *element) {
     if (!head) return false;
     dllp_t new = malloc(sizeof(struct dllp));
     new->item = element;
@@ -80,34 +82,32 @@ dllp_t dllp_find(dllp_t head, void *item) {
 
 void *dllp_delete(dllp_t *node) {
     if (!node) return NULL;
-    dllp_t elem = *node;
-    if (!elem) return NULL;
-    if (elem->previous) {
-        elem->previous->next = elem->next;
+    if (!(*node)) return NULL;
+    if ((*node)->previous) {
+        (*node)->previous->next = (*node)->next;
     }
-    if (elem->next) {
-        elem->next->previous = elem->previous;
+    if ((*node)->next) {
+        (*node)->next->previous = (*node)->previous;
     }
-    void *item = elem->item;
-    dllp_t next = elem->next;
-    free(elem);
+    void *item = (*node)->item;
+    dllp_t next = (*node)->next;
+    free((*node));
     *node = next;
     return item;
 }
 
 size_t dllp_count(dllp_t head) {
+    if (!head) return 0;
     dllp_t temp = head;
     size_t result = 0;
-    if (head) {
-        do {
-            temp = temp->next;
-            result++;
-        } while (temp && temp != head);
-    }
+    do {
+        temp = temp->next;
+        result++;
+    } while (temp && temp != head);
     return result;
 }
 
-bool dllp_is_empty(dllp_t head) {
+static inline bool dllp_is_empty(dllp_t head) {
     return !head;
 }
 
