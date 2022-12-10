@@ -12,7 +12,5 @@ int main() {
     r->right = bnode_new_leaf(4);
     puts("tree:");
     bnode_print_vertical(r);
-    printf("balanced:");
-    if ()
     return 0;
 }
