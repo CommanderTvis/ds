@@ -144,7 +144,7 @@ int ll_most_frequent(ll_t head) {
     return element_having_max_freq;
 }
 
-void ll_delete(ll_t *head, size_t position) {
+void ll_delete(ll_t *head, const size_t position) {
     ll_t temp = *head;
     ll_t prev = *head;
     for (size_t i = 0; i < position; i++) {
