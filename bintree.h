@@ -59,10 +59,16 @@ size_t bnode_height(bnode_t root) {
     return max(bnode_height(root->left), bnode_height(root->right)) + 1;
 }
 
-size_t bnode_n_leaves(bnode_t root) {
+size_t bnode_count_leaves(bnode_t root) {
     if (!root) return 0;
     if (!root->left && !root->right) return 1;
-    return bnode_n_leaves(root->left) + bnode_n_leaves(root->right);
+    return bnode_count_leaves(root->left) + bnode_count_leaves(root->right);
+}
+
+size_t bnode_count_nodes(bnode_t root) {
+    if (!root) return 0;
+    if (!root->left && !root->right) return 1;
+    return bnode_count_nodes(root->left) + bnode_count_nodes(root->right) + 1;
 }
 
 bool bnode_is_balanced(bnode_t root) {
