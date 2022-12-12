@@ -24,5 +24,6 @@ int main() {
     dlli_t ls = bst_to_list(r);
     puts("list:");
     dlli_print(ls);
+    bnode_free(&r);
     return 0;
 }

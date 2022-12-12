@@ -33,30 +33,30 @@ void bnode_left_rotate(bnode_t *a) {
     *a = b;
 }
 
-void avl_insert(bnode_t *node, int key) {
-    if (!(*node)) *node = bnode_new_leaf(key);
+void avl_insert(bnode_t *node, int data) {
+    if (!(*node)) *node = bnode_new_leaf(data);
 
-    if (key < (*node)->data)
-        avl_insert(&((*node)->left), key);
-    else if (key > (*node)->data)
-        avl_insert(&((*node)->right), key);
+    if (data < (*node)->data)
+        avl_insert(&((*node)->left), data);
+    else if (data > (*node)->data)
+        avl_insert(&((*node)->right), data);
     else
         return;
 
     long long balance = bnode_height((*node)->left) - bnode_height((*node)->right);
 
-    if (balance > 1 && key < (*node)->left->data)
+    if (balance > 1 && data < (*node)->left->data)
         bnode_right_rotate(node);
 
-    if (balance < -1 && key > (*node)->right->data)
+    if (balance < -1 && data > (*node)->right->data)
         bnode_left_rotate(node);
 
-    if (balance > 1 && key > (*node)->left->data) {
+    if (balance > 1 && data > (*node)->left->data) {
         bnode_left_rotate(&((*node)->left));
         bnode_right_rotate(node);
     }
 
-    if (balance < -1 && key < (*node)->right->data) {
+    if (balance < -1 && data < (*node)->right->data) {
         bnode_right_rotate(&((*node)->right));
         bnode_left_rotate(node);
     }

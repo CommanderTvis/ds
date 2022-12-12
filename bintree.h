@@ -30,15 +30,21 @@ bnode_t bnode_find(bnode_t root, int item) {
     return bnode_find(root->right, item);
 }
 
+bnode_t bnode_copy(bnode_t root) {
+    if (!root) return NULL;
+    bnode_t new = bnode_new_leaf(root->data);
+    new->left = bnode_copy(root->left);
+    new->right = bnode_copy(root->right);
+    return new;
+}
+
 bool bnode_free(bnode_t *root) {
     if (!root) return false;
     if (!(*root)) return false;
-    if ((*root)->left) {
-        bnode_free(&(*root)->left);
-    }
-    if ((*root)->right) {
-        bnode_free(&(*root)->right);
-    }
+    bnode_free(&(*root)->left);
+    (*root)->left = NULL;
+    bnode_free(&(*root)->right);
+    (*root)->right = NULL;
     free(*root);
     *root = NULL;
     return true;
