@@ -1,5 +1,6 @@
 #include <stdbool.h>
 #include <stdio.h>
+
 #ifndef DLLI_H
 
 typedef struct dlli *dlli_t;
@@ -12,7 +13,7 @@ struct dlli {
     dlli_t next;
 };
 
-void dlli_add_last(dlli_t *head, int element) {
+void dlli_add_last(dlli_t *head, const int element) {
     if (!head) return;
     dlli_t new = malloc(sizeof(struct dlli));
     new->item = element;
@@ -31,7 +32,7 @@ void dlli_add_last(dlli_t *head, int element) {
     it->next = new;
 }
 
-bool dlli_add_after(dlli_t head, int element) {
+bool dlli_add_after(const dlli_t head, const int element) {
     if (!head) return false;
     dlli_t new = malloc(sizeof(struct dlli));
     new->item = element;
@@ -43,7 +44,7 @@ bool dlli_add_after(dlli_t head, int element) {
     return true;
 }
 
-bool dlli_insert(dlli_t *head, size_t index, int element) {
+bool dlli_insert(dlli_t *const head, const size_t index, const int element) {
     if (!head) return false;
     dlli_t new = malloc(sizeof(struct dlli));
     new->item = element;
@@ -69,7 +70,7 @@ bool dlli_insert(dlli_t *head, size_t index, int element) {
     return true;
 }
 
-dlli_t dlli_find(dlli_t head, int item) {
+dlli_t dlli_find(dlli_t head, const int item) {
     while (head) {
         if (head->item == item)
             return head;
@@ -143,4 +144,5 @@ void dlli_free(dlli_t *head) {
     } while (*head);
     *head = NULL;
 }
+
 #endif

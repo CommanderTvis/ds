@@ -3,22 +3,24 @@
 
 #include "bintree.h"
 
-void bnode_right_rotate(bnode_t *const y) {
-    if (!y) return;
-    bnode_t x = (*y)->left;
-    bnode_t t2 = x->right;
-    x->right = *y;
-    (*y)->left = t2;
-    *y = x;
+void bnode_right_rotate(bnode_t *const node) {
+    if (!node) return;
+    if (!(*node)) return;
+    bnode_t left = (*node)->left;
+    bnode_t leftRight = left->right;
+    left->right = *node;
+    (*node)->left = leftRight;
+    *node = left;
 }
 
-void bnode_left_rotate(bnode_t *const x) {
-    if (!x) return;
-    bnode_t y = (*x)->right;
-    bnode_t t2 = y->left;
-    y->left = *x;
-    (*x)->right = t2;
-    *x = y;
+void bnode_left_rotate(bnode_t *const node) {
+    if (!node) return;
+    if (!(*node)) return;
+    bnode_t right = (*node)->right;
+    bnode_t rightLeft = right->left;
+    right->left = *node;
+    (*node)->right = rightLeft;
+    *node = right;
 }
 
 void avl_insert(bnode_t *const node, const int key) {

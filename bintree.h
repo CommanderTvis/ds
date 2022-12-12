@@ -43,7 +43,7 @@ bnode_t bnode_find(const bnode_t root, const int item) {
     return bnode_find(root->right, item);
 }
 
-bool bnode_free(bnode_t *root) {
+bool bnode_free(bnode_t *const root) {
     if (!root) return false;
     if (!(*root)) return false;
     if ((*root)->left) {

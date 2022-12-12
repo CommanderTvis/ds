@@ -2,6 +2,7 @@
 #include <memory.h>
 #include <stdbool.h>
 #include <stdlib.h>
+
 #ifndef LL_H
 #define LL_H
 
@@ -144,7 +145,7 @@ int ll_most_frequent(ll_t head) {
     return element_having_max_freq;
 }
 
-void ll_delete(ll_t *head, const size_t position) {
+void ll_delete(ll_t *const head, const size_t position) {
     ll_t temp = *head;
     ll_t prev = *head;
     for (size_t i = 0; i < position; i++) {
@@ -167,19 +168,19 @@ void ll_delete(ll_t *head, const size_t position) {
     }
 }
 
-void ll_delete_even(ll_t *head) {
+void ll_delete_even(ll_t *const head) {
     for (size_t i = 2; i <= ll_count(*head); i += 1) {
         ll_delete(head, i);
     }
 }
 
-void ll_delete_multiplies_of_5(ll_t *head) {
+void ll_delete_multiplies_of_5(ll_t *const head) {
     for (size_t i = 5; i <= ll_count(*head); i += 4) {
         ll_delete(head, i);
     }
 }
 
-bool ll_contains(ll_t head, int element) {
+bool ll_contains(ll_t head, const int element) {
     if (!head) return false;
     do {
         if (head->item == element)
@@ -196,7 +197,7 @@ void ll_print(ll_t head) {
     } while (head);
 }
 
-void ll_delete_duplicates(ll_t *head) {
+void ll_delete_duplicates(ll_t *const head) {
     if (!head) return;
     ll_t copy = NULL;
     do {
@@ -208,4 +209,5 @@ void ll_delete_duplicates(ll_t *head) {
     } while (*head);
     *head = copy;
 }
+
 #endif

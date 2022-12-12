@@ -1,6 +1,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+
 #ifndef DLLP_H
 #define DLLP_H
 
@@ -45,7 +46,7 @@ bool dllp_add_after(const dllp_t head, void *element) {
     return true;
 }
 
-bool dllp_insert(dllp_t *head, const size_t index, void *element) {
+bool dllp_insert(dllp_t *const head, const size_t index, void *const element) {
     if (!head) return false;
     dllp_t new = malloc(sizeof(struct dllp));
     new->item = element;
@@ -119,4 +120,5 @@ void dllp_free(dllp_t *head) {
     } while (*head);
     *head = NULL;
 }
+
 #endif

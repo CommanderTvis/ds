@@ -5,7 +5,7 @@
 #define BINTREE_PRINT_H
 
 
-void bnode_print_vertical(bnode_t root) {
+void bnode_print_vertical(const bnode_t root) {
     dllp_t treeLevel = dllp_empty;
     dllp_add_last(&treeLevel, root);
     dllp_t temp = dllp_empty;

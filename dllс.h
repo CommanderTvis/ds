@@ -43,7 +43,7 @@ bool dllc_add_after(dllc_t head, const char element) {
     return true;
 }
 
-bool dllc_insert(dllc_t *head, const size_t index, const char element) {
+bool dllc_insert(dllc_t *const head, const size_t index, const char element) {
     if (!head) return false;
     const dllc_t new = malloc(sizeof(struct dllc));
     new->item = element;
