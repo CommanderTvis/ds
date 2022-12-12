@@ -34,7 +34,7 @@ void dllp_add_last(dllp_t *head, void *element) {
     it->next = new;
 }
 
-bool dllp_add_after(const dllp_t head, void *element) {
+bool dllp_add_after(dllp_t head, void *element) {
     if (!head) return false;
     dllp_t new = malloc(sizeof(struct dllp));
     new->item = element;
@@ -46,7 +46,7 @@ bool dllp_add_after(const dllp_t head, void *element) {
     return true;
 }
 
-bool dllp_insert(dllp_t *const head, const size_t index, void *const element) {
+bool dllp_insert(dllp_t *head, size_t index, void *element) {
     if (!head) return false;
     dllp_t new = malloc(sizeof(struct dllp));
     new->item = element;

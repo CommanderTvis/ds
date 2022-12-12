@@ -23,7 +23,7 @@ void bst_convert_to_impl(bnode_t root, bnode_t *bst) {
     bst_convert_to_impl(root->right, bst);
 }
 
-bnode_t bst_find(const bnode_t root, const int data) {
+bnode_t bst_find(bnode_t root, int data) {
     if (!root || root->data == data)
         return root;
     if (root->data < data)
@@ -31,7 +31,7 @@ bnode_t bst_find(const bnode_t root, const int data) {
     return bst_find(root->left, data);
 }
 
-int bst_max_impl(const bnode_t root, const int max) {
+int bst_max_impl(bnode_t root, int max) {
     if (!root) return max;
     if (root->right) {
         return max(max, bst_max_impl(root->right, max));
@@ -39,7 +39,7 @@ int bst_max_impl(const bnode_t root, const int max) {
     return max(root->data, max);
 }
 
-void bnode_inorder(const bnode_t curr, bnode_t *const prev) {
+void bnode_inorder(bnode_t curr, bnode_t *prev) {
     if (!curr) return;
     bnode_inorder(curr->left, prev);
     (*prev)->left = NULL;
@@ -48,7 +48,7 @@ void bnode_inorder(const bnode_t curr, bnode_t *const prev) {
     bnode_inorder(curr->right, prev);
 }
 
-dlli_t bst_to_list(const bnode_t root) {
+dlli_t bst_to_list(bnode_t root) {
     bnode_t dummy = bnode_new_leaf(-1);
     bnode_t prev = dummy;
     bnode_inorder(root, &prev);

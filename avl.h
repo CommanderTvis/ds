@@ -3,27 +3,37 @@
 
 #include "bintree.h"
 
-void bnode_right_rotate(bnode_t *const node) {
-    if (!node) return;
-    if (!(*node)) return;
-    bnode_t left = (*node)->left;
-    bnode_t leftRight = left->right;
-    left->right = *node;
-    (*node)->left = leftRight;
-    *node = left;
+void bnode_right_rotate(bnode_t *a) {
+    //    a         b
+    //   /           \
+    //  b     ->      a
+    //  \            /
+    //   c          c
+    if (!a) return;
+    if (!(*a)) return;
+    bnode_t b = (*a)->left;
+    bnode_t c = b->right;
+    b->right = *a;
+    (*a)->left = c;
+    *a = b;
 }
 
-void bnode_left_rotate(bnode_t *const node) {
-    if (!node) return;
-    if (!(*node)) return;
-    bnode_t right = (*node)->right;
-    bnode_t rightLeft = right->left;
-    right->left = *node;
-    (*node)->right = rightLeft;
-    *node = right;
+void bnode_left_rotate(bnode_t *a) {
+    //    a            b
+    //     \          /
+    //      b   ->   a
+    //     /          \
+    //    c            c
+    if (!a) return;
+    if (!(*a)) return;
+    bnode_t b = (*a)->right;
+    bnode_t c = b->left;
+    b->left = *a;
+    (*a)->right = c;
+    *a = b;
 }
 
-void avl_insert(bnode_t *const node, const int key) {
+void avl_insert(bnode_t *node, int key) {
     if (!(*node)) *node = bnode_new_leaf(key);
 
     if (key < (*node)->data)
