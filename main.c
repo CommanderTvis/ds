@@ -17,8 +17,11 @@ int main() {
     avl_insert(&r, 3);
     avl_insert(&r, 1);
     avl_insert(&r, 4);
-    puts("AVL tree:");
+    puts("Tree:");
     bnode_print_vertical(r);
+
+    printf("balanced: %i\n", bnode_is_balanced(r));
+
     dlli_t ls = bst_to_list(r);
     puts("list:");
     dlli_print(ls);

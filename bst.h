@@ -5,20 +5,19 @@
 #define BST_H
 
 
-bnode_t bst_insert(bnode_t root, int data) {
-    if (!root) return bnode_new_leaf(data);
+void bst_insert(bnode_t *root, int data) {
+    if (!root) return;
+    if (!(*root))*root = bnode_new_leaf(data);
 
-    if (data < root->data)
-        root->left = bst_insert(root->left, data);
-    else if (data > root->data)
-        root->right = bst_insert(root->right, data);
-
-    return root;
+    if (data < (*root)->data)
+        bst_insert(&(*root)->left, data);
+    else if (data > (*root)->data)
+        bst_insert(&(*root)->right, data);
 }
 
 void bst_convert_to_impl(bnode_t root, bnode_t *bst) {
     if (!root) return;
-    *bst = bst_insert(*bst, root->data);
+    bst_insert(bst, root->data);
     bst_convert_to_impl(root->left, bst);
     bst_convert_to_impl(root->right, bst);
 }
