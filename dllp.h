@@ -121,4 +121,4 @@ void dllp_free(dllp_t *head) {
     *head = NULL;
 }
 
-#endif
+#endif // DLLP_H

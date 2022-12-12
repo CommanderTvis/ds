@@ -148,4 +148,4 @@ void dllc_free(dllc_t *head) {
     } while (*head);
     *head = NULL;
 }
-#endif
+#endif // DLLC_H

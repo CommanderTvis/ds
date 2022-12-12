@@ -45,4 +45,4 @@ void bnode_print_vertical(const bnode_t root) {
     }
 }
 
-#endif
+#endif // BINTREE_PRINT_H

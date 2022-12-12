@@ -65,4 +65,4 @@ dlli_t bst_to_list(const bnode_t root) {
     return list;
 }
 
-#endif
+#endif // BST_H

@@ -210,4 +210,4 @@ void ll_delete_duplicates(ll_t *const head) {
     *head = copy;
 }
 
-#endif
+#endif // LL_H

@@ -81,4 +81,4 @@ bool bnode_is_balanced(const bnode_t root) {
     return distance(lh, rh) <= 1 && bnode_is_balanced(root->left) && bnode_is_balanced(root->right);
 }
 
-#endif
+#endif // BINTREE_H
